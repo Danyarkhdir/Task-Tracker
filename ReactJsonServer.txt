@@ -1,0 +1,18 @@
+Json Server 
+
+npm run build 
+
+npm i -g serve 
+
+serve -s build -p 8000
+
+
+
+Install json server 
+
+npm i json-server 
+
+-- in  package.json in scripts field add
+
+"server":"json-server --watch db.json --port 5000"
+
