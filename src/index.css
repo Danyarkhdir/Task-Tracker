@@ -41,6 +41,14 @@ body {
   font-family: inherit;
 }
 
+.date {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .btn:focus {
   outline: none;
 }

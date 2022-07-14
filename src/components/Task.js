@@ -1,16 +1,23 @@
 import { AiFillDelete } from "react-icons/ai";
-const Task = ({ task, onDelete }) => {
+import { BsAlarmFill } from "react-icons/bs";
+const Task = ({ task, onDelete, onToggle }) => {
   return (
-    <div className="task">
+    <div
+      className={`task ${task.reminder ? "reminder" : ""}`}
+      onDoubleClick={() => onToggle(task.id)}
+    >
       <h3>
-        {task.text}{" "}
+        {task.text}
         <AiFillDelete
           color="#ff5555"
           cursor="pointer"
           onClick={() => onDelete(task.id)}
         />
       </h3>
-      <p>{task.day}</p>
+      <div className="date">
+        <p>{task.day}</p>
+        {task.reminder ? <BsAlarmFill /> : null}
+      </div>
     </div>
   );
 };
