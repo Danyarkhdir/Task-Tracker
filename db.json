@@ -1,3 +1,16 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "text": "Danyar",
+      "day": "2022-07-22",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "ghgjhk",
+      "day": "2022-07-29",
+      "reminder": false,
+      "id": 2
+    }
+  ]
 }

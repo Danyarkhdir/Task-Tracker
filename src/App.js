@@ -3,9 +3,13 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import { TbMoodEmpty } from "react-icons/tb";
 import AddTask from "./components/AddTask";
+import { Routes, Route, Link } from "react-router-dom";
+import About from "./components/About";
+import { useLocation } from "react-router-dom";
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const location = useLocation();
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks();
@@ -76,24 +80,54 @@ function App() {
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
-      {showAddTask && <AddTask onAdd={addTask} />}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-        <h1
-          style={{
-            textAlign: "center",
-            marginTop: "60px",
-            color: "#ff5555",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+      <div className="navigation">
+        <Link
+          className={`link1 ${location.pathname === "/" ? "active-link" : ""}`}
+          to="/"
         >
-          <TbMoodEmpty style={{ marginRight: "10px" }} />
-          No Task to do
-        </h1>
-      )}
+          Home
+        </Link>
+        <Link
+          className={`link1 ${
+            location.pathname === "/about" ? "active-link" : ""
+          }`}
+          to="/about"
+        >
+          About
+        </Link>
+      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {showAddTask && <AddTask onAdd={addTask} />}
+              {tasks.length > 0 ? (
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              ) : (
+                <h1
+                  style={{
+                    textAlign: "center",
+                    marginTop: "60px",
+                    color: "#ff5555",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <TbMoodEmpty style={{ marginRight: "10px" }} />
+                  No Task to do
+                </h1>
+              )}
+            </>
+          }
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   );
 }
