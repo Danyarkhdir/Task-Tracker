@@ -102,6 +102,7 @@ function App() {
           element={
             <>
               {showAddTask && <AddTask onAdd={addTask} />}
+
               {tasks.length > 0 ? (
                 <Tasks
                   tasks={tasks}
@@ -109,19 +110,22 @@ function App() {
                   onToggle={toggleReminder}
                 />
               ) : (
-                <h1
-                  style={{
-                    textAlign: "center",
-                    marginTop: "60px",
-                    color: "#ff5555",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <TbMoodEmpty style={{ marginRight: "10px" }} />
-                  No Task to do
-                </h1>
+                !showAddTask && (
+                  <h1
+                    style={{
+                      textAlign: "center",
+                      marginTop: "60px",
+                      color: "#ff5555",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    No Task To Do !
+                    <TbMoodEmpty size={"50px"} />
+                    {"!"}
+                  </h1>
+                )
               )}
             </>
           }
